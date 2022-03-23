@@ -17,40 +17,48 @@ import retrofit2.create
 
 class MainActivityViewModel(var application: Application) : ViewModel() {
 
-    var liveDataList: MutableLiveData<List<Items>>
+    var liveDataList: MutableLiveData<MutableList<Items>>
+    var pagenumber: Int = 1
+    var currentdata: MutableList<Items>? = null
 
     init {
         liveDataList = MutableLiveData()
     }
-    fun getlivedata(): MutableLiveData<List<Items>> {
-        val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
-        val list = userDao.getAll()
-        liveDataList?.postValue(list)
+
+    fun getlivedata(): MutableLiveData<MutableList<Items>> {
         return liveDataList
     }
 
-    fun makeApiCall() {
+    fun makeApiCall(genreId: Int) {
+        println("fetching")
         val retroInstance = RetroInstance.getretrointance()
         val retroService = retroInstance.create(RetroInterface::class.java)
-        val call = retroService.getMovieList()
+        val call =
+            retroService.getMovieList(pagenumber, "18b04b2c0c2663bd59770c6f6cc9f5a3", genreId)
         call.enqueue(object : Callback<MoviesData> {
             override fun onResponse(
                 call: Call<MoviesData>,
                 response: Response<MoviesData>
             ) {
-                liveDataList?.postValue(response.body()?.items)
-                println(response.body()?.items)
                 if (response.body() != null) {
+                    println("fetching" + pagenumber)
                     val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
-                    userDao.insertAll(response.body()?.items)
-                    println(response.body()?.items)
+                    pagenumber++
+                    println(response.body())
+                    userDao.insertAll(response.body()?.results)
+                    val list = userDao.getAll()
+                    liveDataList?.postValue(list)
                 }
             }
+
             override fun onFailure(call: Call<MoviesData>, t: Throwable) {
                 liveDataList?.postValue(null)
             }
+        })
+    }
 
-        }
-        )
+    fun DeletAll() {
+        val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
+        userDao.deleteAll()
     }
 }

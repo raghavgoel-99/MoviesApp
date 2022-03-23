@@ -5,7 +5,7 @@ import androidx.room.*
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
-@Database(entities = [Items::class], version = 1)
+@Database(entities = [Items::class], version = 2)
 abstract class RoomAppDb : RoomDatabase() {
 
     abstract fun userDao(): roomDao
@@ -20,11 +20,9 @@ abstract class RoomAppDb : RoomDatabase() {
 
         fun getAppDatabase(context: Context): RoomAppDb {
             if (INSTANCE == null) {
-
-
                 synchronized(this) {
                     INSTANCE = Room.databaseBuilder<RoomAppDb>(
-                        context.applicationContext, RoomAppDb::class.java, "AppDBB"
+                        context.applicationContext, RoomAppDb::class.java, "AppDB3"
                     )
                         .addMigrations(migration_1_2)
                         .allowMainThreadQueries()

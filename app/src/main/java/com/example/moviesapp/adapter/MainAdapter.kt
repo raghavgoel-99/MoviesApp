@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviesapp.R
 import com.example.moviesapp.database.Items
-import com.example.moviesapp.database.MoviesData
 
 //latetst
 class MainAdapter : RecyclerView.Adapter<CustomViewHolder>() {
@@ -42,14 +41,14 @@ class CustomViewHolder(val v: View) : RecyclerView.ViewHolder(v) {
     val movieicon: ImageView = v.findViewById(R.id.Movie_Icon)
     val moviename: TextView = v.findViewById(R.id.Movie_name)
     val movierating: TextView = v.findViewById(R.id.rating)
+    val releaseDate: TextView = v.findViewById(R.id.releaseDate)
 
     fun bind(data: Items?) {
-        moviename.text = data?.title
-        movierating.text = data?.imDbRating
-
+        moviename.text = "Name : " + data?.title
+        movierating.text = "Rating : " + data?.vote_average
+        releaseDate.text = "Date : " + data?.release_date
         Glide.with(movieicon)
-            .load(data?.image)
-            .circleCrop()
+            .load("https://image.tmdb.org/t/p/w185//" + data?.poster_path)
             .into(movieicon)
 
     }

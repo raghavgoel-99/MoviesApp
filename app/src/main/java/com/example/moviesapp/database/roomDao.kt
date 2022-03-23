@@ -12,10 +12,13 @@ import androidx.room.Query
 @Dao
 interface roomDao {
 
-    @Query("SELECT * FROM movies")
-    fun getAll():List<Items>
+    @Query("SELECT * FROM moviesList")
+    fun getAll(): MutableList<Items>
 
     @Insert
-    fun insertAll(list: List<Items>?)
+    fun insertAll(list: MutableList<Items>?)
+
+    @Query("DELETE FROM moviesList")
+    fun deleteAll()
 
 }

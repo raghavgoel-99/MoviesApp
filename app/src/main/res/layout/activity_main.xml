@@ -7,13 +7,12 @@
     tools:context=".ui.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
-       android:id="@+id/Toolbar"
-        app:title="MoviesApp"
-        app:subtitle="-By Raghav"
+        android:id="@+id/Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="MoviesApp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_main"
@@ -23,7 +22,7 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_below="@+id/recyclerView_main"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        android:layout_below="@+id/recyclerView_main" />
 </RelativeLayout>
