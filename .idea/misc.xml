@@ -8,8 +8,9 @@
         <entry key="app/src/main/res/drawable/default_image_background.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_genre.xml" value="0.11854103343465046" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1485148514851485" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_movie_detail.xml" value="0.10036926269531243" />
         <entry key="app/src/main/res/layout/genre_model.xml" value="0.15997161865234377" />
         <entry key="app/src/main/res/layout/movie_model.xml" value="0.15037593984962405" />

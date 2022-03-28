@@ -22,7 +22,7 @@ abstract class RoomAppDb : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(this) {
                     INSTANCE = Room.databaseBuilder<RoomAppDb>(
-                        context.applicationContext, RoomAppDb::class.java, "AppDB3"
+                        context.applicationContext, RoomAppDb::class.java, "AppDB7"
                     )
                         .addMigrations(migration_1_2)
                         .allowMainThreadQueries()

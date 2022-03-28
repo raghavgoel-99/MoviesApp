@@ -58,7 +58,10 @@ class MainActivity : AppCompatActivity() {
         initViewModel()
     }
 
-
+    override fun onResume() {
+        super.onResume()
+       viewModel.refresh()
+    }
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)

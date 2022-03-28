@@ -12,19 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviesApp">
         <activity
+            android:name=".ui.DetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.GenreActivity"
             android:exported="true">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
     </application>
 
 </manifest>

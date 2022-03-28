@@ -57,6 +57,17 @@
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/likedStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:gravity="start"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

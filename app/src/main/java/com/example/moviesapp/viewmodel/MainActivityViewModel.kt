@@ -28,7 +28,13 @@ class MainActivityViewModel(var application: Application) : ViewModel() {
     fun getlivedata(): MutableLiveData<MutableList<Items>> {
         return liveDataList
     }
+    fun refresh()
+    {
+        val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
+        val list = userDao.getAll()
+        liveDataList?.postValue(list)
 
+    }
     fun makeApiCall(genreId: Int) {
         println("fetching")
         val retroInstance = RetroInstance.getretrointance()

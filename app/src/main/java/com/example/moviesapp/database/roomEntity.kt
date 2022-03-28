@@ -13,8 +13,7 @@ data class MoviesData(
 
 @Entity(tableName = "moviesList")
 data class Items(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "sno") val sno: Int = 0,
-    @ColumnInfo(name = "id") val id: Int?,
+    @PrimaryKey @ColumnInfo(name = "id") val id: Int?,
     @ColumnInfo(name = "adult") val adult: String?,
     @ColumnInfo(name = "original_language") val original_language: String?,
     @ColumnInfo(name = "overview") val overview: String?,
@@ -24,7 +23,8 @@ data class Items(
     @ColumnInfo(name = "release_date") val release_date: String?,
     @ColumnInfo(name = "backdrop_path") val backdrop_path: String?,
     @ColumnInfo(name = "vote_average") val vote_average: String?,
-    @ColumnInfo(name = "vote_count") val vote_count: String?
+    @ColumnInfo(name = "vote_count") val vote_count: String?,
+    @ColumnInfo(name = "liked_status") val liked_status: Boolean?=false
 )
 
 data class GenresData(
