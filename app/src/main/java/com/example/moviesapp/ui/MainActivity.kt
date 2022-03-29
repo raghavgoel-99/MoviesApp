@@ -53,14 +53,13 @@ class MainActivity : AppCompatActivity() {
             }
         }).get(MainActivityViewModel::class.java)
 
-        viewModel.DeletAll()
         initRecyclerView()
         initViewModel()
     }
 
     override fun onResume() {
         super.onResume()
-       viewModel.refresh()
+       viewModel.refresh(genreId)
     }
     val scrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

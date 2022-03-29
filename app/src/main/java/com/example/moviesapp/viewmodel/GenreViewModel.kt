@@ -34,9 +34,9 @@ class GenreViewModel(var application: Application) : ViewModel() {
                 liveDataList?.postValue(response.body()?.genres)
                 println(response.body())
                 val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
+                userDao.insertGenre(response.body()?.genres)
 //                userDao.insertAll(response.body()?.results)
             }
-
             override fun onFailure(call: Call<GenresData>, t: Throwable) {
 
             }

@@ -57,7 +57,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         println(status)
-        if(status=="1")
+        if(status=="true")
         {
             liked()
         }
@@ -71,14 +71,14 @@ class DetailActivity : AppCompatActivity() {
         Heart_Frame.setVisibility(View.GONE)
         Heart.setVisibility(View.VISIBLE)
         val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
-//        userDao.update(true,Id?.toInt())
+        userDao.update(true,Id?.toInt())
     }
     fun notLiked()
     {
         Heart.setVisibility(View.GONE)
         Heart_Frame.setVisibility(View.VISIBLE)
         val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
-//        userDao.update(false,Id?.toInt())
+        userDao.update(false,Id?.toInt())
     }
 
 }

@@ -6,11 +6,14 @@ import androidx.room.*
 
 @Dao
 interface roomDao {
-    @Query("SELECT * FROM moviesList")
-    fun getAll(): MutableList<Items>
+    @Query("SELECT * FROM moviesList WHERE genreid = :genreid")
+    fun getAll(genreid :Int?): MutableList<Items>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: MutableList<Items>?)
+
+    @Insert
+    fun insertGenre(list:List<Genres>?)
 
     @Query("DELETE FROM moviesList")
     fun deleteAll()
@@ -18,3 +21,4 @@ interface roomDao {
     @Query("UPDATE moviesList SET liked_status = :status WHERE id =:id")
     fun update(status: Boolean?, id: Int?)
 }
+

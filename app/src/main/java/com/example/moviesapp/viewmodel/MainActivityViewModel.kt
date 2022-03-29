@@ -28,12 +28,11 @@ class MainActivityViewModel(var application: Application) : ViewModel() {
     fun getlivedata(): MutableLiveData<MutableList<Items>> {
         return liveDataList
     }
-    fun refresh()
+    fun refresh(genreId: Int?)
     {
         val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
-        val list = userDao.getAll()
+        val list = userDao.getAll(genreId)
         liveDataList?.postValue(list)
-
     }
     fun makeApiCall(genreId: Int) {
         println("fetching")
@@ -46,19 +45,27 @@ class MainActivityViewModel(var application: Application) : ViewModel() {
                 call: Call<MoviesData>,
                 response: Response<MoviesData>
             ) {
+
+                val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
                 if (response.body() != null) {
                     println("fetching" + pagenumber)
-                    val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
                     pagenumber++
                     println(response.body())
+                    response.body()?.results?.forEach {
+                        it.genreid=genreId
+                    }
                     userDao.insertAll(response.body()?.results)
-                    val list = userDao.getAll()
-                    liveDataList?.postValue(list)
+
                 }
+                val list = userDao.getAll(genreId)
+                liveDataList?.postValue(list)
             }
 
             override fun onFailure(call: Call<MoviesData>, t: Throwable) {
-                liveDataList?.postValue(null)
+
+                val userDao = RoomAppDb.getAppDatabase(application)?.userDao()
+                val list = userDao.getAll(genreId)
+                liveDataList?.postValue(list)
             }
         })
     }
